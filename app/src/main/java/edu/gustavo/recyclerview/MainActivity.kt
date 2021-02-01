@@ -7,21 +7,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
-    var modelo : ModeloViewModel? = null
+
+    var modelos : ModeloViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        findViewById<FloatingActionButton>(R.id.add).setOnClickListener { view ->
+            Snackbar.make(view, resources.getString(R.string.anadir), Snackbar.LENGTH_LONG)
+                    .setAction(resources.getString(R.string.accion), null).show()
         }
 
-        modelo = ViewModelProvider(this).get(ModeloViewModel::class.java)
+        modelos = ViewModelProvider(this).get(ModeloViewModel::class.java)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -36,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_limpiar -> {
-                modelo = ViewModelProvider(this).get(ModeloViewModel::class.java)
+                modelos = ViewModelProvider(this).get(ModeloViewModel::class.java)
                 true
             }
             else -> super.onOptionsItemSelected(item)

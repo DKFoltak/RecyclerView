@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -17,6 +21,7 @@ class FirstFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_first, container, false)
     }
@@ -24,8 +29,13 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.button_first).setOnClickListener {
+        view.findViewById<RecyclerView>(R.id.recyclerView).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView) as RecyclerView
+        recyclerView.adapter = ModeloAdapter((activity as MainActivity).modelos!!)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.layoutManager = LinearLayoutManager(getContext())
     }
 }

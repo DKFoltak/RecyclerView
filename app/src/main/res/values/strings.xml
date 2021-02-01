@@ -9,4 +9,7 @@
     <string name="clase">Clase</string>
     <string name="materia">Materia</string>
     <string name="action_clear">Limpiar</string>
+    <string name="previous">Previo</string>
+    <string name="anadir">Añadir</string>
+    <string name="accion">Accion</string>
 </resources>
