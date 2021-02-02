@@ -1,5 +1,6 @@
 package edu.gustavo.recyclerview
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -38,6 +39,11 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_limpiar -> {
                 modelos = ViewModelProvider(this).get(ModeloViewModel::class.java)
+                true
+            }
+            R.id.action_settings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
