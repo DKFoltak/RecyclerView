@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 class ModeloAdapter(var modelos: ModeloViewModel) : RecyclerView.Adapter<ModeloAdapter.ViewHolder>() {
@@ -16,6 +18,11 @@ class ModeloAdapter(var modelos: ModeloViewModel) : RecyclerView.Adapter<ModeloA
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_clase, parent, false)
+        view.setOnClickListener {
+            val clase = it.findViewById<View>(R.id.textView_valClase) as TextView
+            val modelo = modelos.lista.find { m -> m.clase == clase.text }
+            it.findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundleOf("position" to modelos.lista.indexOf(modelo)))
+        }
         return ViewHolder(view)
     }
 

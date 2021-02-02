@@ -1,6 +1,5 @@
 package edu.gustavo.recyclerview
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ModeloViewModel : ViewModel() {
